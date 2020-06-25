@@ -18,14 +18,16 @@ import kotlin.sequences.*
 import kotlin.text.*
 
 // Complete the journeyToMoon function below.
-fun journeyToMoon(n: Int, astronaut: Array<Array<Int>>): Int {
+fun journeyToMoon(n: Int, astronaut: Array<Array<Int>>): MutableList<Int> {
     var m=n
     var id=mutableListOf<Int>()
     var sz=mutableListOf<Int>()
+    var szroots=mutableListOf<Int>()
     var nastro=mutableListOf<Int>()
     for(i in 0..n){
         id.add(i)
         sz.add(1)
+        szroots.add(0)
         nastro.add(0)
     }
     fun root(i:Int ):Int{
@@ -44,10 +46,14 @@ fun journeyToMoon(n: Int, astronaut: Array<Array<Int>>): Int {
             if (sz[i] < sz[j]) {
                 id[i] = j
                 sz[j] += sz[i]
+                szroots[j]=sz[j]
+                szroots[i]=0
             }
             else {
                 id[j] = i
                 sz[i] += sz[j]
+                szroots[i]=sz[i]
+                szroots[j]=0
             }
         }
     }
@@ -61,13 +67,13 @@ fun journeyToMoon(n: Int, astronaut: Array<Array<Int>>): Int {
             ncon++
             nastro[astronaut[i][1]]=1
         }
-        union(astronaut[i][0],astronaut[i][0])
+        union(astronaut[i][0],astronaut[i][1])
     }
     
 
 
 
-    return (ncon)
+    return (id)
 }
 
 fun main(args: Array<String>) {
@@ -86,6 +92,8 @@ fun main(args: Array<String>) {
     }
 
     val result = journeyToMoon(n, astronaut)
-
-    println(result)
+    println(" ")
+    for (i in result.indices){
+        print(result[i])
+    }
 }
