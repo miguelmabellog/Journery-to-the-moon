@@ -26,6 +26,7 @@ fun journeyToMoon(n: Int, astronaut: Array<Array<Int>>): Int {
     for(i in 0..n){
         id.add(i)
         sz.add(1)
+        nastro.add(0)
     }
     fun root(i:Int ):Int{
         var ii=i
@@ -52,13 +53,21 @@ fun journeyToMoon(n: Int, astronaut: Array<Array<Int>>): Int {
     }
     var ncon=0
     for (i in astronaut.indices){
-
+        if(nastro[astronaut[i][0]]==0){
+            ncon++
+            nastro[astronaut[i][0]]=1
+        }
+        if(nastro[astronaut[i][1]]==0){
+            ncon++
+            nastro[astronaut[i][1]]=1
+        }
         union(astronaut[i][0],astronaut[i][0])
     }
+    
 
 
 
-    return (0)
+    return (ncon)
 }
 
 fun main(args: Array<String>) {
