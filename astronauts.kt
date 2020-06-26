@@ -76,9 +76,26 @@ fun journeyToMoon(n: Int, astronaut: Array<Array<Int>>): Int {
             sumszr+=szroots[i]
             pwcp+=(ncon-sumszr)*szroots[i]
         }
+    if(pwcp==0){
+        pwcp=1
+    }
+    var cwop=n-ncon // country without pairs
+    var pw=1//possible ways
+    if(cwop>0){
+        cwop--
+        for (i in 1..cwop){
+            pw*=i
+        }
+    }else{
+        pw=0
+    }
+    pw+=(n-ncon)*(ncon)
+    pw+=pwcp
 
 
-    return (pwcp)
+
+
+    return (pw)
 }
 
 fun main(args: Array<String>) {
