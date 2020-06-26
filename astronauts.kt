@@ -18,7 +18,7 @@ import kotlin.sequences.*
 import kotlin.text.*
 
 // Complete the journeyToMoon function below.
-fun journeyToMoon(n: Int, astronaut: Array<Array<Int>>): MutableList<Int> {
+fun journeyToMoon(n: Int, astronaut: Array<Array<Int>>): Int {
     var m=n
     var id=mutableListOf<Int>()
     var sz=mutableListOf<Int>()
@@ -57,7 +57,7 @@ fun journeyToMoon(n: Int, astronaut: Array<Array<Int>>): MutableList<Int> {
             }
         }
     }
-    var ncon=0
+    var ncon=0  //all stranouts with country pairs
     for (i in astronaut.indices){
         if(nastro[astronaut[i][0]]==0){
             ncon++
@@ -69,11 +69,16 @@ fun journeyToMoon(n: Int, astronaut: Array<Array<Int>>): MutableList<Int> {
         }
         union(astronaut[i][0],astronaut[i][1])
     }
-    
+    var pwcp=0 //possible ways country with pairs
+    var sumszr=0
+    for (i in szroots.indices)
+        if(szroots[i]!=0){
+            sumszr+=szroots[i]
+            pwcp+=(ncon-sumszr)*szroots[i]
+        }
 
 
-
-    return (id)
+    return (pwcp)
 }
 
 fun main(args: Array<String>) {
@@ -92,8 +97,9 @@ fun main(args: Array<String>) {
     }
 
     val result = journeyToMoon(n, astronaut)
-    println(" ")
+    print(result)
+    /*println(" ")
     for (i in result.indices){
         print(result[i])
-    }
+    }*/
 }
