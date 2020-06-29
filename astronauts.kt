@@ -18,6 +18,7 @@ import kotlin.sequences.*
 import kotlin.text.*
 
 // Complete the journeyToMoon function below.
+//Este trabajo lo realizo miguel bello
 fun journeyToMoon(n: Int, astronaut: Array<Array<Int>>): Long {
     var m=n
     var id=mutableListOf<Int>()
